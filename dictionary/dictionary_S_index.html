@@ -99,6 +99,7 @@ body * { font-family: inherit; }
   font-family: 'Malbadang Jeju Gothic', '함초롬돋움 LVT', 'Malgun Gothic', sans-serif !important;
 }
 
+
 </style></head><body><a class="skip" href="#search">검색으로 이동</a><header class="hero"><div class="wrap"><div class="hero-copy"><div class="eyebrow">2026 CHUJA ELEMENTARY SCHOOL · 말바당 프로그램</div><h1>🌊 제주어로 이어지는 우리<br>말바당 통합 언어사전</h1><p>우리 학교가 함께 모은 제주어와 지역의 말을<br>찾고, 읽고, 들어 보세요.</p></div><aside class="hero-news" id="heroNews" hidden aria-label="최근 제주어 카드뉴스"></aside></div></header><main class="main">
 <section class="panel page" id="homePage">
  <h2 class="sect">📚 어떤 자료를 살펴볼까요?</h2>
@@ -146,16 +147,25 @@ function renderHeroNews(){
  const e=news[0];host.hidden=false;host.innerHTML=`<div class="news-cover">${newsPreview(e,true)}</div><div class="news-title">${esc(displayNewsTitle(e))}</div><div class="news-period">${esc(e.cardPeriod||'제주어 카드뉴스')}</div>`;host.style.cursor='pointer';host.title='제주어 카드뉴스 보기';host.onclick=()=>goPage('cardnews')}
 
 let newsPageIndex=0;
+/* V26.6: CARDNEWS_ARCHIVE_ALL_ITEMS_NO_DATE_FILTER */
 function getNewsItems(){
-  // Cardnews content is NEVER mixed with entries from other sources.
-  // Honor the optional search only within the cardnews category.
-  const q=$('search').value.trim().toLocaleLowerCase('ko');
-  const list=DATA.filter(e=>e.source==='cardnews' &&
-    cardHasMedia(e) && isCardCurrent(e) &&
-    (!q||[e.title,e.cardPeriod,e.description].join(' ').toLocaleLowerCase('ko').includes(q)));
-  // Prefer learning period (year-month-week) over creation time when provided.
-  function periodKey(e){let s=String(e.cardPeriod||'');let yr=s.match(/(20\d{2})\s*년?/);let m=s.match(/(1[0-2]|[1-9])\s*월/);let w=s.match(/([1-5])\s*주/);return yr||m||w?(Number(yr?.[1]||2026)*10000+Number(m?.[1]||0)*100+Number(w?.[1]||0)):0}
-  return list.sort((a,b)=>periodKey(a)-periodKey(b)||(a.created||'').localeCompare(b.created||''));
+  // 카드뉴스 메뉴: 날짜, 미디어 연결 여부에 관계없이 등록 자료 전체를 보여 줍니다.
+  // 메인화면의 isCardCurrent()와 이 함수는 의도적으로 분리되어 있습니다.
+  const list=DATA.filter(e=>e.source==='cardnews');
+  function periodKey(e){
+    const s=String(e.cardPeriod||'');
+    const year=s.match(/(20\d{2})\s*년?/);
+    const month=s.match(/(1[0-2]|[1-9])\s*월/);
+    const week=s.match(/([1-5])\s*주/);
+    return year||month||week ? Number(year?.[1]||2026)*10000+Number(month?.[1]||0)*100+Number(week?.[1]||0) : 0;
+  }
+  return list.sort((a,b)=>{
+    const aa=a.cardStart||'', bb=b.cardStart||'';
+    if(aa&&bb)return aa.localeCompare(bb)||periodKey(a)-periodKey(b)||(a.created||'').localeCompare(b.created||'');
+    if(aa)return -1;
+    if(bb)return 1;
+    return periodKey(a)-periodKey(b)||(a.created||'').localeCompare(b.created||'');
+  });
 }
 function getSlideItems(){
  if(selected==='cardnews')return getNewsItems();
@@ -165,17 +175,20 @@ function getSlideItems(){
 function renderNewsFeed(){
  const isNews=selected==='cardnews';
  const list=getSlideItems(), feed=$('newsFeed');
- if(!list.length){feed.innerHTML='<div class="empty">'+(isNews?'현재 게시 기간에 해당하는 카드뉴스가 없습니다.':'등록된 추자도 소개 이미지나 PDF가 없습니다.')+'</div>';return}
+ if(!list.length){feed.innerHTML='<div class="empty">'+(isNews?'등록된 카드뉴스가 없습니다.':'등록된 추자도 소개 이미지나 PDF가 없습니다.')+'</div>';return}
+ // 메인화면 카드뉴스 게시 기간과 관계없이 메뉴에서는 전체 카드뉴스를 순서대로 넘깁니다.
+ // getSlideItems()는 날짜 제한 없는 전체 자료를 반환합니다.
+ feed.classList.remove('cardnews-all-feed');
  newsPageIndex=Math.min(Math.max(0,newsPageIndex),list.length-1);
  const e=list[newsPageIndex];
  const title=isNews?displayNewsTitle(e):(e.title&&e.title!=='추자도를 소개합니다'?e.title:(e.pdfName||'').replace(/\.pdf$/i,'')||'추자도를 소개합니다');
  feed.innerHTML=`<article class="news-single" aria-label="${isNews?'카드뉴스':'추자도 소개'} ${newsPageIndex+1} / ${list.length}">
   <h3>${esc(title)}</h3>
-  ${isNews&&e.cardPeriod?`<div class="news-period">📅 ${esc(e.cardPeriod)}</div>`:''}
+  ${isNews?`<div class="news-period">📅 ${esc(e.cardPeriod||'학습 기간 미지정')}${e.cardStart||e.cardEnd?` · 게시: ${esc(e.cardStart||'시작일 없음')} ~ ${esc(e.cardEnd||'종료일 없음')}`:''}</div>`:''}
   <div class="slide-shell">
-   <button type="button" class="side-arrow side-arrow-prev" id="newsPrevious" ${newsPageIndex===0?'disabled':''} aria-label="이전 자료" title="이전 자료">❮</button>
+   <button type="button" class="side-arrow side-arrow-prev" id="newsPrevious" ${newsPageIndex===0?'disabled':''} aria-label="이전 카드뉴스 또는 자료" title="이전 자료">❮</button>
    <div class="news-preview">${newsPreview(e)}</div>
-   <button type="button" class="side-arrow side-arrow-next" id="newsNext" ${newsPageIndex===list.length-1?'disabled':''} aria-label="다음 자료" title="다음 자료">❯</button>
+   <button type="button" class="side-arrow side-arrow-next" id="newsNext" ${newsPageIndex===list.length-1?'disabled':''} aria-label="다음 카드뉴스 또는 자료" title="다음 자료">❯</button>
   </div>
   <div class="news-position" aria-live="polite">${newsPageIndex+1} / ${list.length}</div>
   <div class="media-actions">
@@ -254,7 +267,7 @@ function goPage(id){
 function goHome(push=true){currentPage='home';selected='all';$('contentPage').hidden=true;$('homePage').hidden=false;drawHome();window.scrollTo({top:0,behavior:'instant'});if(push)history.pushState({mbPage:'home'},'',location.href)}
 window.addEventListener('popstate',ev=>{if(ev.state?.mbPage&&ev.state.mbPage!=='home')goPage(ev.state.mbPage);else goHome(false)});
 $('backHome').onclick=()=>goHome();
-function filtered(){const q=$('search').value.trim().toLocaleLowerCase('ko');let list=DATA.filter(e=>(selected==='all'||e.source===selected)&&isCardCurrent(e)&&(!q||[e.jeju,e.standard,e.jeolla,e.gyeongsang,e.chungcheong,e.chujaSpeech,e.otherDialect,e.description,e.category,e.tags,e.studentText,e.title,e.pdfName,e.cardPeriod,itemSource(e).name].flat().join(' ').toLocaleLowerCase('ko').includes(q)));let sort=$('sort').value;if(sort==='recent')list.sort((a,b)=>(b.created||'').localeCompare(a.created||''));else if(sort==='source')list.sort((a,b)=>a.source.localeCompare(b.source)||a.jeju.localeCompare(b.jeju,'ko'));else list.sort((a,b)=>(a.jeju||a.title||'').localeCompare(b.jeju||b.title||'','ko'));return list}
+function filtered(){const q=$('search').value.trim().toLocaleLowerCase('ko');let list=DATA.filter(e=>(selected==='all'||e.source===selected)&&(!q||[e.jeju,e.standard,e.jeolla,e.gyeongsang,e.chungcheong,e.chujaSpeech,e.otherDialect,e.description,e.category,e.tags,e.studentText,e.title,e.pdfName,e.cardPeriod,itemSource(e).name].flat().join(' ').toLocaleLowerCase('ko').includes(q)));let sort=$('sort').value;if(sort==='recent')list.sort((a,b)=>(b.created||'').localeCompare(a.created||''));else if(sort==='source')list.sort((a,b)=>a.source.localeCompare(b.source)||a.jeju.localeCompare(b.jeju,'ko'));else list.sort((a,b)=>(a.jeju||a.title||'').localeCompare(b.jeju||b.title||'','ko'));return list}
 function renderMissionTable(){
  const host=$('missionStudentRows');
  const q=$('search').value.trim().toLocaleLowerCase('ko');
