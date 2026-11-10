@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>말바당 뚜껑 열어! · 우리말 지역 탐험</title>
+<style>
+@font-face{font-family:Jeju;src:url('https://ceraserx-9rassam.github.io/malbadang/dictionary/JejuGothic.ttf') format('truetype');font-display:swap}
+:root{--sea:#135c70;--deep:#112f52;--violet:#584db8;--gold:#ffcd5c;--cream:#fffaf0;--green:#168b62;--red:#cb4c55;--muted:#53657b}
+*{box-sizing:border-box}body{margin:0;font-family:Jeju,'Malgun Gothic',sans-serif;color:#152943;background:#dfe9f5}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid #efb73b;outline-offset:2px}.hidden{display:none!important}
+.app{max-width:1500px;min-height:100vh;margin:auto;background:linear-gradient(140deg,#f3f8ff,#e5ecff);box-shadow:0 0 50px #09244b16}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 24px;background:linear-gradient(115deg,#103c60,#186c82);color:white;flex-wrap:wrap}.topbar h1{font-size:clamp(21px,2.3vw,31px);margin:0}.sub{opacity:.83;font-size:14px}.topcontrols{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;padding:11px 16px;min-height:46px;border-radius:12px;font-weight:900;background:#14798d;color:white;box-shadow:0 3px 0 #093d4b24}.btn.alt{background:white;color:#17425d}.btn.gold{background:#ffca4f;color:#30331f}.btn.dark{background:#303d7e;color:white}.btn.outline{border:2px solid #a9c8d5;background:#fff;color:#24566b}.btn.small{padding:8px 13px;min-height:38px;font-size:14px}
+.hero{text-align:center;padding:clamp(24px,4vw,55px) 20px 30px}.eyebrow{color:#168b86;font-weight:900;letter-spacing:.18em}.hero h2{font-size:clamp(37px,5.5vw,68px);margin:10px 0;color:#20416a}.hero p{font-size:clamp(17px,2vw,25px);color:#566a86}.modes{display:grid;grid-template-columns:repeat(2,1fr);max-width:780px;margin:30px auto 0;gap:16px}.modebtn{border:3px solid #bfd7e1;border-radius:22px;padding:22px;background:white;min-height:118px;text-align:left;box-shadow:0 7px 0 #cadae3;font-size:clamp(18px,2.1vw,26px);font-weight:900;color:#1d5571}.modebtn span{display:block;font-size:14px;color:#667a91;margin-top:6px;font-weight:600}.modebtn:hover{border-color:#20a19c;transform:translateY(-2px)}.intro-note{max-width:780px;margin:32px auto 0;color:#6d7c89;font-size:14px;line-height:1.7}
+.board{padding:16px clamp(12px,2.5vw,36px) 32px}.questiontop{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:13px}.qnum{padding:10px 19px;background:#1d905e;color:white;font-size:clamp(17px,2vw,26px);font-weight:900;clip-path:polygon(0 0,85% 0,100% 50%,85% 100%,0 100%);padding-right:30px}.chips{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.chip{background:#e5f4f6;border:1px solid #b8dcdf;color:#16516a;padding:9px 13px;border-radius:20px;font-size:14px;font-weight:900}.questionbox{text-align:center;background:white;border-radius:20px;border:3px solid #d0e1ec;padding:14px 20px;box-shadow:0 5px 0 #c8d9e1}.questionbox h2{font-size:clamp(24px,3.3vw,47px);line-height:1.36;margin:8px 0}.questionhint{font-weight:700;color:#667990;font-size:clamp(14px,1.5vw,19px)}
+.stage{background:radial-gradient(ellipse at 50% 10%,#8175d6,#4b56b1 70%,#39459a);border-radius:24px;margin-top:16px;min-height:440px;padding:clamp(15px,2vw,30px);position:relative;overflow:hidden}.stage:before{content:'✦';position:absolute;left:3%;top:4%;font-size:85px;color:#ffffff12;pointer-events:none}.stage:after{content:'✦';position:absolute;right:4%;bottom:4%;font-size:70px;color:#ffffff15;pointer-events:none}.stageTitle{color:white;text-align:center;font-size:clamp(20px,2.5vw,34px);font-weight:1000;text-shadow:0 3px 9px #17295b69;margin:1px 0 18px}.lids{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.5vw,24px);max-width:1160px;margin:auto;position:relative;z-index:1}.lid{background:linear-gradient(160deg,#ffffff12,#ffffff05);border:2px solid #ffffff3c;min-height:clamp(155px,18vw,235px);border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:10px;color:#fff;transition:background .2s,transform .2s;touch-action:manipulation}.lid:not(:disabled):hover{background:#ffffff20;transform:translateY(-2px)}.lid.cloaked .cloche{animation:idle 3s infinite ease-in-out}.cloche{width:min(86%,300px);height:clamp(108px,13vw,162px);position:relative;transform-origin:50% 90%;filter:drop-shadow(0 7px 3px #09143933)}.dome{position:absolute;bottom:14%;left:14%;height:66%;width:72%;border-radius:100% 100% 7% 7%/120% 120% 7% 7%;background:linear-gradient(100deg,#585b69 0%,#faffff 17%,#bec5cc 34%,#fff 51%,#8b95a8 79%,#e7eff6 100%);box-shadow:inset 8px -10px 15px #333d5075,inset -13px 0 15px #f6ffffac}.plate{position:absolute;bottom:6%;left:4%;width:92%;height:21%;border-radius:50%;background:linear-gradient(#e8f1f7,#7b899a 35%,#ebf4fc 67%,#5f6b7d);box-shadow:0 2px 5px #14275277}.knob{position:absolute;left:calc(50% - 9px);top:3%;height:19%;width:18px;border-radius:50% 50% 35% 35%;background:linear-gradient(90deg,#5c697c,#fff,#566176);box-shadow:0 0 3px #fff}.knob:after{content:'';width:29px;height:8px;position:absolute;top:-2px;left:-6px;border-radius:100%;background:linear-gradient(90deg,#7d8998,#fff,#8a98a7)}.lidnum{position:absolute;z-index:2;top:47%;left:50%;transform:translate(-50%,-50%);border:4px solid #c9d4ba;border-radius:100px;background:#fff7bc;color:#17273c;width:clamp(50px,5.7vw,75px);height:clamp(50px,5.7vw,75px);display:flex;align-items:center;justify-content:center;font-size:clamp(29px,3.4vw,45px);font-weight:900;box-shadow:0 2px 5px #0003}.lidcaption{font-size:clamp(14px,1.5vw,19px);font-weight:800;text-shadow:0 2px 4px #13295c;margin-top:1px}.lid.preview-open{background:#fff9e6;color:#153f60;border-color:#ffe189;cursor:default}.lid.preview-open .answerText{font-size:clamp(24px,3vw,42px)}.previewTimer{max-width:610px;margin:0 auto 14px;padding:12px 18px;text-align:center;background:#fff4bc;color:#493900;border:3px solid #ffe070;border-radius:18px;font-size:clamp(19px,2.3vw,28px);font-weight:1000}.previewTimer strong{display:inline-flex;align-items:center;justify-content:center;min-width:46px;min-height:46px;border-radius:50%;background:#213a75;color:#fff;margin:0 4px;font-variant-numeric:tabular-nums}.lid.opened{background:#e7f6ff;color:#153f60;border-color:#98d6e9}.lid.opened .cloche{animation:lift .45s ease both}.lid.opened .lidnum,.lid.opened .lidcaption{display:none}.answerText{font-size:clamp(21px,2.7vw,39px);font-weight:1000;line-height:1.25;text-align:center;padding:15px;overflow-wrap:anywhere}.lid.correct{background:#d9ffea;color:#105f39;border:5px solid #38cd8c;box-shadow:0 0 0 5px #d8ffd765,0 0 30px #b7f9ad}.lid.wrong{background:#ffe4e8;color:#9d243a;border:5px solid #ff9caa}.lid.revealed-correct{outline:5px dashed #ffdf56;outline-offset:-8px}.resultMark{font-size:clamp(25px,3vw,46px);font-weight:1000;margin-top:3px}.feedback{padding:15px 19px;border-radius:17px;line-height:1.55;font-size:clamp(17px,1.9vw,24px);font-weight:800;margin-top:14px;background:#fff;color:#1d3e64}.feedback.good{background:#e3ffed;color:#12633e}.feedback.bad{background:#fff0db;color:#835317}.gamebar{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:15px}.gamebar .btn{min-height:58px;font-size:clamp(16px,1.7vw,22px);padding:11px 23px}.score{font-size:clamp(16px,1.8vw,22px);font-weight:900;color:#265374}.scoreboard{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:12px 0;padding:13px;background:#e9f7ff;border:2px solid #94cae5;border-radius:16px;font-size:clamp(15px,1.7vw,23px);font-weight:850}.scoreboard strong{color:#0d5e8b;font-variant-numeric:tabular-nums}.timebar{height:12px;max-width:550px;margin:8px auto;background:#d2dfe6;border-radius:20px;overflow:hidden}.timefill{height:100%;width:100%;background:linear-gradient(90deg,#45ac7b,#ffcb49);transition:width .10s linear}.foot{text-align:center;padding:18px;color:#6f8190;font-size:13px}
+.teacher{padding:18px 24px 45px}.teacher h2{font-size:26px;margin:14px 0}.teachergrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:white;border-radius:17px;padding:20px;border:1px solid #cfdeea;box-shadow:0 5px 13px #0c345310}.field{display:block;font-size:14px;font-weight:800;margin-top:11px}.field input,.field select,.field textarea{display:block;margin-top:5px;width:100%;padding:11px;border:2px solid #cbdce7;border-radius:10px;background:#fff;color:#163750}.field textarea{min-height:90px}.optiongrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.note{color:#5e7285;font-size:13px;line-height:1.65}.row{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.questionlist{max-height:640px;overflow-y:auto}.qitem{border:1px solid #dde8ed;border-radius:10px;padding:10px;margin:9px 0;background:#fbfdff}.qitem strong{display:block;overflow-wrap:anywhere}.qitem small{color:#59778b}.qitem .row{margin:7px 0 0}#uploadJson{display:none}
+@keyframes lift{0%{transform:translateY(0) scale(1);opacity:1}70%{transform:translateY(-33px) scale(1.05);opacity:.65}100%{transform:translateY(-60px) scale(.85);opacity:0;display:none}}@keyframes idle{50%{transform:translateY(-3px)}}
+@media(max-width:660px){.topbar{padding:12px}.modes{grid-template-columns:1fr}.board{padding:11px}.stage{padding:11px;min-height:350px}.lids{gap:9px}.lid{min-height:157px;padding:5px}.cloche{width:100%;height:112px}.stageTitle{margin-bottom:8px}.answerText{font-size:22px;padding:3px}.teachergrid{grid-template-columns:1fr}.teacher{padding:12px}.optiongrid{grid-template-columns:1fr}.gamebar .btn{flex:1 1 40%}}
+@media(prefers-reduced-motion:reduce){.cloche,.lid{animation:none!important;transition:none!important}}
+
+/* 15문제 라운드·결과 화면 */
+.roundsummary{margin:16px auto;max-width:740px;padding:26px;border-radius:24px;background:#fff;color:#183d50;box-shadow:0 12px 36px #082b4b26;text-align:center}
+.roundsummary h2{font-size:clamp(26px,4vw,39px);margin:8px 0 12px}.roundsummary .totalbig{font-size:clamp(35px,6vw,62px);font-weight:900;color:#087a79}
+.roundsummary .roundstats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:12px 0 22px}
+.roundsummary .roundstats span{background:#eff9f5;border-radius:13px;padding:12px 19px;font-weight:800}
+.roundsummary .row{justify-content:center}.roundsummary .btn{min-height:59px;padding:12px 22px;font-size:20px}
+.roundnotice{background:#eaf6f5;border-radius:13px;padding:9px 14px;margin:10px 0;line-height:1.6;color:#275b5e}
+@media(max-width:660px){.roundsummary{padding:16px}.roundsummary .btn{flex:1 1 100%}}
+
+/* V2: 시작화면 지역 버튼과 문제·접시의 위치/터치 영역 통일 */
+.stageTitle{min-height:1.5em;display:flex;align-items:center;justify-content:center}
+/* 관찰 카운트다운이 사라져도 4개 접시의 위치가 움직이지 않도록 영역 고정 */
+.stage .previewTimer.hidden{display:block!important;visibility:hidden;pointer-events:none}
+.modes{align-items:stretch}
+.modebtn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:125px;padding:16px 20px;line-height:1.35}
+.modebtn span{display:none!important}
+.questionbox,.stage{width:100%;max-width:100%;box-sizing:border-box}
+.stage{padding:clamp(14px,2vw,26px);}
+.lids{width:100%;max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;grid-auto-rows:clamp(170px,18.5vw,238px)}
+.lid,.lid.preview-open,.lid.opened,.lid.correct,.lid.wrong{width:100%;height:100%;min-width:0;min-height:0;padding:10px;border-width:3px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden}
+.lid .cloche{width:min(80%,310px);height:clamp(98px,12vw,159px);flex-shrink:0;pointer-events:none}
+.lid .answerText{width:100%;max-height:100%;overflow-wrap:anywhere;word-break:keep-all;pointer-events:none}
+.lid .previewNumber,.lid .lidcaption,.lid .resultMark{pointer-events:none}
+.lid>*{pointer-events:none}
+.lid{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.lid:not(:disabled):active{transform:scale(.98)}
+@media(max-width:660px){.modes{grid-template-columns:1fr}.modebtn{min-height:85px}.lids{gap:9px;grid-auto-rows:clamp(142px,27vw,180px)}.lid,.lid.preview-open,.lid.opened{padding:5px}.lid .cloche{height:105px;width:min(91%,210px)}.lid .answerText{padding:5px;font-size:clamp(19px,4.3vw,29px)}}
+
+/* V4: 100% 화면 배율에서도 첫 화면 아래가 잘리지 않도록 시작 화면만 컴팩트하게 구성 */
+#welcome.hero{padding:clamp(12px,2.3vh,24px) 16px clamp(12px,2vh,20px)}
+#welcome .eyebrow{font-size:12px;letter-spacing:.12em;line-height:1.25}
+#welcome h2{font-size:clamp(29px,3.7vw,48px);line-height:1.18;margin:6px 0 8px}
+#welcome>p:not(.intro-note){font-size:clamp(14px,1.4vw,18px);line-height:1.45;max-width:950px;margin:8px auto}
+#welcome .modes{max-width:790px;gap:10px;margin:16px auto 0}
+#welcome .modebtn{font-size:clamp(17px,1.75vw,22px);min-height:74px;padding:11px 14px;border-radius:15px;border-width:2px;box-shadow:0 4px 0 #cadae3;line-height:1.25}
+#welcome .intro-note{max-width:820px;margin:14px auto 0;font-size:clamp(12px,1.05vw,14px);line-height:1.5}
+@media(max-height:750px) and (min-width:661px){
+ .topbar{padding:8px 18px}.topbar h1{font-size:clamp(20px,2vw,26px)}.topbar .sub{font-size:12px}
+ #welcome.hero{padding:10px 14px 12px}
+ #welcome h2{font-size:clamp(27px,3.3vw,42px);margin:4px 0}
+ #welcome>p:not(.intro-note){font-size:14px;line-height:1.35;margin:6px auto}
+ #welcome .modes{gap:8px;margin:10px auto 0}
+ #welcome .modebtn{min-height:60px;padding:8px 10px;font-size:clamp(16px,1.6vw,20px)}
+ #welcome .intro-note{margin:10px auto 0;font-size:12px;line-height:1.4}
+}
+@media(max-width:660px){
+ #welcome.hero{padding:16px 12px 18px}
+ #welcome h2{font-size:clamp(27px,7vw,36px)}
+ #welcome .modes{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px auto 0}
+ #welcome .modebtn{min-height:68px;padding:8px;font-size:clamp(14px,3.6vw,19px)}
+ #welcome .intro-note{margin:14px auto 0;font-size:12px}
+}
+@media(max-width:360px){#welcome .modes{grid-template-columns:1fr}#welcome .modebtn{min-height:53px}}
+
+/* V5: 퀴즈 화면도 메인과 동일하게 100% 배율에 맞춰 높이 및 간격 압축.
+   버튼과 뚜껑의 클릭 영역은 실물 크기 그대로 각각 하나의 버튼으로 유지. */
+#game.board{padding:10px clamp(10px,1.8vw,24px) 18px}
+#game .questiontop{gap:7px;margin-bottom:8px}
+#game .qnum{font-size:clamp(15px,1.65vw,22px);padding:7px 28px 7px 13px}
+#game .chips{gap:5px}
+#game .chip{padding:6px 10px;font-size:clamp(12px,1vw,14px)}
+#game .questionbox{border-radius:15px;padding:8px 14px;border-width:2px;box-shadow:0 3px 0 #c8d9e1}
+#game .questionbox h2{font-size:clamp(21px,2.65vw,36px);line-height:1.22;margin:4px 0}
+#game .questionhint{font-size:clamp(12px,1.05vw,15px);line-height:1.25}
+#game .stage{margin-top:9px;min-height:0;padding:10px clamp(10px,1.5vw,20px) 12px;border-radius:18px}
+#game .stageTitle{font-size:clamp(18px,2vw,26px);line-height:1.2;min-height:1.2em;margin:0 0 7px}
+#game .previewTimer{font-size:clamp(15px,1.5vw,20px);padding:6px 10px;margin:0 auto 8px;border-width:2px;border-radius:11px;line-height:1.15}
+#game .previewTimer strong{min-width:32px;min-height:32px}
+#game .lids{gap:clamp(7px,.9vw,12px);grid-auto-rows:clamp(116px,15vh,171px)}
+#game .lid,#game .lid.preview-open,#game .lid.opened,#game .lid.correct,#game .lid.wrong{border-radius:15px;padding:5px;border-width:2px}
+#game .lid .cloche{height:clamp(78px,10.7vh,119px);width:min(78%,255px)}
+#game .lidnum{width:clamp(42px,4.4vw,58px);height:clamp(42px,4.4vw,58px);font-size:clamp(24px,2.65vw,35px);border-width:3px}
+#game .lidcaption{font-size:clamp(12px,1.1vw,15px)}
+#game .lid .answerText,#game .lid.preview-open .answerText{font-size:clamp(19px,2.15vw,30px);padding:5px;line-height:1.18}
+#game .resultMark{font-size:clamp(22px,2.5vw,34px)}
+#game .scoreboard{margin:8px 0 5px;padding:7px 9px;gap:7px 13px;font-size:clamp(13px,1.3vw,18px);border-radius:11px;border-width:1px}
+#game .timebar{height:8px;margin:5px auto}
+#game .feedback{padding:9px 12px;margin-top:7px;font-size:clamp(14px,1.45vw,19px);border-radius:11px;line-height:1.4}
+#game .gamebar{gap:7px;margin-top:9px}
+#game .gamebar .btn{min-height:44px;padding:8px 13px;font-size:clamp(14px,1.2vw,17px);border-radius:10px}
+#game .score{font-size:clamp(13px,1.3vw,17px)}
+@media(max-width:660px){
+ #game.board{padding:9px 8px 16px}
+ #game .questiontop{margin-bottom:7px}
+ #game .questionbox h2{font-size:clamp(19px,4.5vw,26px)}
+ #game .stage{padding:9px 7px 10px}
+ #game .lids{grid-auto-rows:clamp(108px,22vh,148px);gap:7px}
+ #game .lid .cloche{height:clamp(75px,14vh,105px);width:min(90%,190px)}
+ #game .lid .answerText,#game .lid.preview-open .answerText{font-size:clamp(17px,4.3vw,25px)}
+ #game .gamebar .btn{flex:1 1 42%;min-height:45px}
+}
+@media(max-height:740px) and (min-width:661px){
+ .topbar{padding:8px 16px}
+ .topbar h1{font-size:clamp(20px,1.9vw,25px)}
+ .topbar .sub{font-size:12px}
+ #game.board{padding-top:7px}
+ #game .questionbox{padding:6px 12px}
+ #game .stage{padding-top:7px;padding-bottom:8px;margin-top:7px}
+ #game .stageTitle{margin-bottom:4px}
+ #game .previewTimer{padding:4px 8px;margin-bottom:5px}
+ #game .previewTimer strong{min-height:28px;min-width:28px}
+ #game .lids{grid-auto-rows:clamp(110px,15vh,130px)}
+ #game .scoreboard{margin:6px 0 4px}
+ #game .gamebar{margin-top:6px}
+}
+
+</style><style>#teacherBtn,#teacher{display:none!important}</style></head><body><div class="app"><header class="topbar"><div><h1>🌊 말바당 뚜껑 열어!</h1><div class="sub">제주어 · 전라도 · 경상도 · 충청도 — 우리말 탐험</div></div><div class="topcontrols"><button id="homeBtn" class="btn alt small">🏠 시작 화면</button><button id="fullBtn" class="btn alt small">⛶ 전체 화면</button><button id="teacherBtn" class="btn gold small">⚙ 교사용 문제 관리</button></div></header>
+<section id="welcome" class="hero"><div class="eyebrow">CHUJA · MALBADANG</div><h2>어떤 말이 숨어 있을까?</h2><p>한 번 도전할 때 15문제를 풀어요. 문제가 시작되면 5초 동안 네 접시를 살펴보세요. 뚜껑이 닫힌 뒤 10초 안에 정답을 찾아 높은 점수를 받아보세요! 틀려도 한 번 더 도전할 수 있어요.</p><div class="modes"><button class="modebtn" data-mode="all">🎲 전체 지역 도전</button><button class="modebtn" data-mode="제주어">🌊 제주어</button><button class="modebtn" data-mode="전라도">🌾 전라도 방언</button><button class="modebtn" data-mode="경상도">⛰ 경상도 방언</button><button class="modebtn" data-mode="충청도">🍃 충청도 방언</button></div><p class="intro-note">⭐ 뚜껑이 닫히면 1,000점부터 시작하여 10초 동안 0점까지 내려갑니다. 첫 오답은 100점 감점되지만 한 번 더 선택할 수 있습니다. 정답을 맞힌 경우에만 최종 점수를 얻습니다.<br>*1.2학년 말바당 프로젝트에서 지역 방언 30쌍을 기반으로 문제를 제작하였습니다.</p></section>
+<section id="game" class="board hidden"><div class="questiontop"><div class="qnum" id="questionNumber">1번 문제</div><div class="chips"><span class="chip" id="qRegion"></span><span class="chip" id="qKind"></span><span class="chip" id="progress">1 / 1</span></div></div><div class="questionbox"><h2 id="prompt"></h2><div id="questionHint" class="questionhint">정답이 숨겨진 뚜껑 하나를 선택하세요!</div></div><div class="stage"><div id="stageTitle" class="stageTitle">뚜껑 열어!</div><div id="previewTimer" class="previewTimer hidden" role="status" aria-live="off">자세히 살펴보세요! <strong id="previewCount">5</strong>초 뒤 뚜껑이 닫힙니다.</div><div id="lids" class="lids"></div></div><div class="scoreboard"><span>⏱️ <strong id="solveClock">관찰 중</strong></span><span>⭐ 이번 문제 <strong id="livePoints">최대 1,000점</strong></span><span>🏆 누적 <strong id="totalPoints">0점</strong></span><span id="chanceLabel">기회 2번</span></div><div class="timebar"><div id="timeFill" class="timefill"></div></div><div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div><div class="gamebar"><button id="revealBtn" class="btn outline hidden">🔎 정답 뚜껑 열어 보기</button><button id="nextBtn" class="btn gold">다음 문제 ➜</button><button id="retryBtn" class="btn alt">↻ 이 문제 다시하기</button><button id="endBtn" class="btn outline">⏹ 종료하기</button><span class="score" id="score"></span></div></section>
+<section id="roundEnd" class="roundsummary hidden" aria-live="polite"><h2 id="endTitle">더 도전하시겠습니까?</h2><p id="endMsg" class="roundnotice"></p><div class="totalbig" id="endPoints">0점</div><div class="roundstats"><span id="endCorrect">정답 0문제</span><span id="endDone">완료 0문제</span></div><div class="row"><button id="challengeAgain" class="btn gold">⭐ 더 도전하기</button><button id="backToMenu" class="btn alt">🏠 메뉴로 돌아가기</button></div></section>
+<section id="teacher" class="teacher hidden"><h2>⚙ 교사용 문제 관리</h2><p class="note">문항을 직접 등록·수정하고 JSON으로 백업할 수 있습니다. 학생에게 배포할 때는 아래의 학생용 HTML 생성 버튼을 사용하세요. 이 화면의 자료는 현재 브라우저에도 저장되지만 안전한 보관을 위해 JSON 백업이 필요합니다.</p><div class="row"><button id="downloadJson" class="btn">⬇ JSON 백업</button><button id="importJson" class="btn alt">⬆ JSON 불러오기</button><input id="uploadJson" type="file" accept=".json,application/json"><button id="exportStudent" class="btn gold">📘 학생용 HTML 생성</button><button id="restoreDefault" class="btn outline">기본 문제로 초기화</button><button id="addGrade12" class="btn alt">🌱 1·2학년 프로젝트 문제 추가</button></div><div class="roundnotice"><label style="display:flex;align-items:center;gap:9px"><input type="checkbox" id="autoGrade12" checked=""> 📚 공개 통합사전의 1·2학년 프로젝트 신규 자료 자동 반영</label><p style="margin:7px 0 0;font-size:13px">게임 시작 시 <b>dictionary/dictionary_S_index.html</b>의 공개 자료를 읽어 새 낱말 문제를 임시로 추가합니다. 공개 사이트가 연결되지 않으면 현재 문제로 진행합니다. 새 자료는 통합사전에 게시된 후 반영됩니다.</p><p id="syncStatus" class="note" role="status"></p></div><div class="teachergrid"><div class="panel"><h3 id="editorTitle">새 문제 등록</h3><label class="field">지역 <select id="editRegion"><option>제주어</option><option>전라도</option><option>경상도</option><option>충청도</option></select></label><label class="field">문제 유형 <select id="editKind"><option>뜻 맞히기</option><option>지역 맞히기</option><option>상황 표현</option><option>문장 완성</option><option>그림·자료 퀴즈</option><option>직접 입력</option></select></label><label class="field">문제 문장 <textarea id="editPrompt" placeholder="예: ‘정구지’는 표준어로 무엇일까요?"></textarea></label><div class="optiongrid"><label class="field">1번 보기<input id="editChoice0"></label><label class="field">2번 보기<input id="editChoice1"></label><label class="field">3번 보기<input id="editChoice2"></label><label class="field">4번 보기<input id="editChoice3"></label></div><label class="field">정답 번호 <select id="editAnswer"><option value="0">1번</option><option value="1">2번</option><option value="2">3번</option><option value="3">4번</option></select></label><label class="field">정답 설명 (선택) <textarea id="editExplanation" placeholder="정답의 뜻과 수집 지역을 적어 주세요."></textarea></label><div class="row"><button id="saveQuestion" class="btn">문제 저장</button><button id="clearEditor" class="btn alt">새 문제 입력</button></div><p id="editorStatus" class="note" role="status"></p></div><div class="panel"><h3>등록 문제 <span id="countQuestions">47개</span></h3><div id="questionList" class="questionlist"><div class="qitem"><strong>1. 제주어 ‘하영’은 무슨 뜻일까요?</strong><small>제주어 · 뜻 맞히기 · 정답 2번 (많이)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>2. 경상도에서 쓰는 ‘정구지’는 무엇일까요?</strong><small>경상도 · 뜻 맞히기 · 정답 1번 (부추)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>3. 전라도 방언 ‘어매’는 누구를 부르는 말일까요?</strong><small>전라도 · 뜻 맞히기 · 정답 3번 (어머니)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>4. ‘뭐라카노?’에 가장 가까운 뜻은?</strong><small>경상도 · 뜻 맞히기 · 정답 4번 (뭐라고 하니?)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>5. ‘싸목싸목’에 가까운 뜻은 무엇일까요?</strong><small>전라도 · 뜻 맞히기 · 정답 1번 (천천히)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>6. 제주어 ‘고치’의 뜻은?</strong><small>제주어 · 뜻 맞히기 · 정답 2번 (같이)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>7. ‘억수로 맛있다’에서 ‘억수로’는?</strong><small>경상도 · 뜻 맞히기 · 정답 3번 (매우)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>8. 제주어 ‘게난’에 가까운 표준어는?</strong><small>제주어 · 뜻 맞히기 · 정답 4번 (그러니까)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>9. ‘정구지’라는 표현과 연결되는 지역은?</strong><small>경상도 · 지역 맞히기 · 정답 2번 (경상도)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>10. ‘솔찬히’와 가장 가까운 뜻은?</strong><small>전라도 · 뜻 맞히기 · 정답 1번 (꽤 많이)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>11. 제주어 ‘독새기’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 1번 (계란(달걀))</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>12. 제주어 ‘새우리’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (부추)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>13. 제주어 ‘마농’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 3번 (마늘)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>14. 제주어 ‘ᄂᆞᆷ삐’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 4번 (무)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>15. 제주어 ‘부루’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 1번 (상추)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>16. 제주어 ‘지슬’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (감자)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>17. 제주어 ‘도새기’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 3번 (돼지)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>18. 제주어 ‘게염지’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 4번 (개미)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>19. 제주어 ‘빙애기’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 1번 (병아리)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>20. 제주어 ‘게우리’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (지렁이)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>21. 제주어 ‘고넹이’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 3번 (고양이)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>22. 제주어 ‘가개비’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 4번 (개구리)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>23. 제주어 ‘재열’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 1번 (매미)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>24. 제주어 ‘밥주리’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (잠자리)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>25. 제주어 ‘심방말축’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 3번 (방아깨비)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>26. 제주어 ‘ᄀᆞᆨ줴기’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 4번 (사마귀)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>27. 제주어 ‘할망’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 1번 (할머니)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>28. 제주어 ‘ᄀᆞ새’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (가위)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>29. 제주어 ‘굴메’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 3번 (그림자)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>30. 제주어 ‘곱을락’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 4번 (숨바꼭질)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>31. 제주어 ‘지꺼지다’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (기쁘다)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>32. 제주어 ‘ᄒᆞᆫ저’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 3번 (빨리)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>33. 제주어 ‘옵서’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 4번 (오세요)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>34. 제주어 ‘반갑수다’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 1번 (반가워요)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>35. 제주어 ‘안녕ᄒᆞ우꽈?’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (안녕하세요?)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>36. 제주어 ‘얼마마씸?’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 3번 (얼마예요?)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>37. 제주어 ‘이게 뭐우꽈?’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 4번 (이거 뭐예요?)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>38. 제주어 ‘맛좋수다’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 1번 (맛있어요)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>39. 제주어 ‘고맙수다’의 뜻은 무엇일까요?</strong><small>제주어 · 1·2학년 말바당 프로젝트 · 정답 2번 (고맙습니다)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>40. 충청도에서 쓰는 ‘그려’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 1번 (그래)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>41. 충청도에서 쓰는 ‘워디’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 1번 (어디)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>42. 충청도에서 쓰는 ‘워째서’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 1번 (어째서)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>43. 충청도에서 쓰는 ‘증말’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 2번 (정말)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>44. 충청도에서 쓰는 ‘시수’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 1번 (세수)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>45. 충청도에서 쓰는 ‘몰러’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 2번 (몰라)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>46. 충청도에서 쓰는 ‘허믄’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 2번 (하면)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div><div class="qitem"><strong>47. 충청도에서 쓰는 ‘아녀유’는 무슨 뜻일까요?</strong><small>충청도 · 뜻 맞히기 · 정답 3번 (아니에요)</small><div class="row"><button class="btn small alt">수정</button><button class="btn small outline">삭제</button></div></div></div></div></div></section><footer class="foot">2026 추자초등학교 말바당 프로그램 · 교사용 문제 등록 후 학생용 생성 가능</footer></div>
+<script>
+'use strict';
+const IS_STUDENT=true;
+const INITIAL_QUESTIONS=[{"id":"q1","region":"제주어","kind":"뜻 맞히기","prompt":"제주어 ‘하영’은 무슨 뜻일까요?","choices":["조금","많이","빨리","어제"],"answer":1,"explanation":"‘하영’은 ‘많이’라는 뜻으로 쓰입니다."},{"id":"q2","region":"경상도","kind":"뜻 맞히기","prompt":"경상도에서 쓰는 ‘정구지’는 무엇일까요?","choices":["부추","상추","시금치","고사리"],"answer":0,"explanation":"‘정구지’는 ‘부추’를 가리키는 지역어입니다."},{"id":"q3","region":"전라도","kind":"뜻 맞히기","prompt":"전라도 방언 ‘어매’는 누구를 부르는 말일까요?","choices":["언니","아버지","어머니","할아버지"],"answer":2,"explanation":"‘어매’는 ‘어머니’ 또는 ‘엄마’를 이르는 말입니다."},{"id":"q4","region":"경상도","kind":"뜻 맞히기","prompt":"‘뭐라카노?’에 가장 가까운 뜻은?","choices":["어디 가니?","뭘 먹니?","언제 오니?","뭐라고 하니?"],"answer":3,"explanation":"‘뭐라카노?’는 ‘뭐라고 하니?’라는 뜻에 가깝습니다."},{"id":"q5","region":"전라도","kind":"뜻 맞히기","prompt":"‘싸목싸목’에 가까운 뜻은 무엇일까요?","choices":["천천히","매우 크게","단번에","몰래"],"answer":0,"explanation":"‘싸목싸목’은 ‘천천히’라는 뜻으로 쓰이는 지역어입니다. 지역별 사용에 차이가 있습니다."},{"id":"q6","region":"제주어","kind":"뜻 맞히기","prompt":"제주어 ‘고치’의 뜻은?","choices":["높이","같이","새로","먼저"],"answer":1,"explanation":"제주어 ‘고치’는 ‘같이’라는 뜻입니다."},{"id":"q7","region":"경상도","kind":"뜻 맞히기","prompt":"‘억수로 맛있다’에서 ‘억수로’는?","choices":["조금","갑자기","매우","가끔"],"answer":2,"explanation":"‘억수로’는 ‘매우’, ‘아주’처럼 정도를 강조하는 표현입니다."},{"id":"q8","region":"제주어","kind":"뜻 맞히기","prompt":"제주어 ‘게난’에 가까운 표준어는?","choices":["그래도","언제나","그런데","그러니까"],"answer":3,"explanation":"문맥에 따라 ‘그러니까’라는 뜻으로 쓰입니다."},{"id":"q9","region":"경상도","kind":"지역 맞히기","prompt":"‘정구지’라는 표현과 연결되는 지역은?","choices":["제주도","경상도","충청도","강원도"],"answer":1,"explanation":"‘정구지’는 특히 경상도 등에서 부추를 가리키는 말로 알려져 있습니다."},{"id":"q10","region":"전라도","kind":"뜻 맞히기","prompt":"‘솔찬히’와 가장 가까운 뜻은?","choices":["꽤 많이","하나도","빨리빨리","조용히"],"answer":0,"explanation":"‘솔찬히’는 ‘꽤’, ‘제법’, ‘상당히’라는 뜻으로 쓰입니다."},{"id":"grade12project_1","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘독새기’의 뜻은 무엇일까요?","choices":["계란(달걀)","부추","마늘","무"],"answer":0,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘독새기’ — ‘계란(달걀)’."},{"id":"grade12project_2","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘새우리’의 뜻은 무엇일까요?","choices":["마늘","부추","무","상추"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘새우리’ — ‘부추’."},{"id":"grade12project_3","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘마농’의 뜻은 무엇일까요?","choices":["무","상추","마늘","감자"],"answer":2,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘마농’ — ‘마늘’."},{"id":"grade12project_4","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘ᄂᆞᆷ삐’의 뜻은 무엇일까요?","choices":["상추","감자","계란(달걀)","무"],"answer":3,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘ᄂᆞᆷ삐’ — ‘무’."},{"id":"grade12project_5","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘부루’의 뜻은 무엇일까요?","choices":["상추","감자","계란(달걀)","부추"],"answer":0,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘부루’ — ‘상추’."},{"id":"grade12project_6","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘지슬’의 뜻은 무엇일까요?","choices":["계란(달걀)","감자","부추","마늘"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘지슬’ — ‘감자’."},{"id":"grade12project_7","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘도새기’의 뜻은 무엇일까요?","choices":["잠자리","방아깨비","돼지","사마귀"],"answer":2,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘도새기’ — ‘돼지’."},{"id":"grade12project_8","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘게염지’의 뜻은 무엇일까요?","choices":["방아깨비","사마귀","돼지","개미"],"answer":3,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘게염지’ — ‘개미’."},{"id":"grade12project_9","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘빙애기’의 뜻은 무엇일까요?","choices":["병아리","사마귀","돼지","개미"],"answer":0,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘빙애기’ — ‘병아리’."},{"id":"grade12project_10","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘게우리’의 뜻은 무엇일까요?","choices":["돼지","지렁이","개미","병아리"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘게우리’ — ‘지렁이’."},{"id":"grade12project_11","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘고넹이’의 뜻은 무엇일까요?","choices":["개미","병아리","고양이","지렁이"],"answer":2,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘고넹이’ — ‘고양이’."},{"id":"grade12project_12","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘가개비’의 뜻은 무엇일까요?","choices":["병아리","지렁이","고양이","개구리"],"answer":3,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘가개비’ — ‘개구리’."},{"id":"grade12project_13","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘재열’의 뜻은 무엇일까요?","choices":["매미","지렁이","고양이","개구리"],"answer":0,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘재열’ — ‘매미’."},{"id":"grade12project_14","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘밥주리’의 뜻은 무엇일까요?","choices":["고양이","잠자리","개구리","매미"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘밥주리’ — ‘잠자리’."},{"id":"grade12project_15","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘심방말축’의 뜻은 무엇일까요?","choices":["개구리","매미","방아깨비","잠자리"],"answer":2,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘심방말축’ — ‘방아깨비’."},{"id":"grade12project_16","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘ᄀᆞᆨ줴기’의 뜻은 무엇일까요?","choices":["매미","잠자리","방아깨비","사마귀"],"answer":3,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘ᄀᆞᆨ줴기’ — ‘사마귀’."},{"id":"grade12project_17","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘할망’의 뜻은 무엇일까요?","choices":["할머니","그림자","숨바꼭질","가위"],"answer":0,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘할망’ — ‘할머니’."},{"id":"grade12project_18","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘ᄀᆞ새’의 뜻은 무엇일까요?","choices":["숨바꼭질","가위","할머니","그림자"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘ᄀᆞ새’ — ‘가위’."},{"id":"grade12project_19","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘굴메’의 뜻은 무엇일까요?","choices":["할머니","가위","그림자","숨바꼭질"],"answer":2,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘굴메’ — ‘그림자’."},{"id":"grade12project_20","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘곱을락’의 뜻은 무엇일까요?","choices":["가위","그림자","할머니","숨바꼭질"],"answer":3,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘곱을락’ — ‘숨바꼭질’."},{"id":"grade12project_22","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘지꺼지다’의 뜻은 무엇일까요?","choices":["반가워요","기쁘다","안녕하세요?","얼마예요?"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘지꺼지다’ — ‘기쁘다’."},{"id":"grade12project_23","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘ᄒᆞᆫ저’의 뜻은 무엇일까요?","choices":["안녕하세요?","얼마예요?","빨리","이거 뭐예요?"],"answer":2,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘ᄒᆞᆫ저’ — ‘빨리’."},{"id":"grade12project_24","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘옵서’의 뜻은 무엇일까요?","choices":["얼마예요?","이거 뭐예요?","맛있어요","오세요"],"answer":3,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘옵서’ — ‘오세요’."},{"id":"grade12project_25","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘반갑수다’의 뜻은 무엇일까요?","choices":["반가워요","이거 뭐예요?","맛있어요","고맙습니다"],"answer":0,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘반갑수다’ — ‘반가워요’."},{"id":"grade12project_26","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘안녕ᄒᆞ우꽈?’의 뜻은 무엇일까요?","choices":["맛있어요","안녕하세요?","고맙습니다","많이"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘안녕ᄒᆞ우꽈?’ — ‘안녕하세요?’."},{"id":"grade12project_27","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘얼마마씸?’의 뜻은 무엇일까요?","choices":["고맙습니다","많이","얼마예요?","기쁘다"],"answer":2,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘얼마마씸?’ — ‘얼마예요?’."},{"id":"grade12project_28","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘이게 뭐우꽈?’의 뜻은 무엇일까요?","choices":["많이","기쁘다","빨리","이거 뭐예요?"],"answer":3,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘이게 뭐우꽈?’ — ‘이거 뭐예요?’."},{"id":"grade12project_29","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘맛좋수다’의 뜻은 무엇일까요?","choices":["맛있어요","기쁘다","빨리","오세요"],"answer":0,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘맛좋수다’ — ‘맛있어요’."},{"id":"grade12project_30","region":"제주어","kind":"1·2학년 말바당 프로젝트","prompt":"제주어 ‘고맙수다’의 뜻은 무엇일까요?","choices":["빨리","고맙습니다","오세요","반가워요"],"answer":1,"explanation":"1·2학년 말바당 프로젝트 언어자료: ‘고맙수다’ — ‘고맙습니다’."},{"id":"chung_sample_01","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘그려’는 무슨 뜻일까요?","choices":["그래","아니","언제","조금"],"answer":0,"explanation":"충청 지역 구어에서 ‘그려’는 ‘그래’라는 뜻으로 쓰입니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."},{"id":"chung_sample_02","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘워디’는 무슨 뜻일까요?","choices":["어디","무엇","왜","누구"],"answer":0,"explanation":"일부 충청 방언에서 ‘어디’를 ‘워디’라고 발음합니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."},{"id":"chung_sample_03","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘워째서’는 무슨 뜻일까요?","choices":["어째서","얼마나","언제부터","누구에게"],"answer":0,"explanation":"일부 충청 방언에서 ‘어째서’가 ‘워째서’로 실현됩니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."},{"id":"chung_sample_04","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘증말’는 무슨 뜻일까요?","choices":["잠깐","정말","아직","나중에"],"answer":1,"explanation":"일부 충청 방언에서 ‘정말’이 ‘증말’로 발음됩니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."},{"id":"chung_sample_05","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘시수’는 무슨 뜻일까요?","choices":["세수","세탁","산책","식사"],"answer":0,"explanation":"일부 충청 방언에서 ‘세수’를 ‘시수’로 발음하기도 합니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."},{"id":"chung_sample_06","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘몰러’는 무슨 뜻일까요?","choices":["빨라","몰라","들어","괜찮아"],"answer":1,"explanation":"일부 충청 방언의 ‘몰러’는 ‘몰라’에 대응하는 발음입니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."},{"id":"chung_sample_07","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘허믄’는 무슨 뜻일까요?","choices":["하지 마","하면","했다","한다"],"answer":1,"explanation":"충청 방언의 ‘허믄’은 표준어 ‘하면’에 해당합니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."},{"id":"chung_sample_08","region":"충청도","kind":"뜻 맞히기","prompt":"충청도에서 쓰는 ‘아녀유’는 무슨 뜻일까요?","choices":["좋아요","맞아요","아니에요","갑니다"],"answer":2,"explanation":"충청 방언 표현 ‘아녀유’는 ‘아니에요’라는 뜻입니다. 지역과 세대에 따라 표현이 달라질 수 있습니다."}];
+const STORE_KEY='malbadang-lidgame-v1';
+const $=id=>document.getElementById(id);
+const copy=x=>JSON.parse(JSON.stringify(x));
+let questions=copy(INITIAL_QUESTIONS),pool=[],index=0,attempts=0,corrects=0,opened=-1,showAnswer=false,previewActive=false,previewInterval=null,previewTimeout=null,mode='all',editingId=null;
+let sessionQuestionPool=[],remainingQueue=[],roundDone=0,roundCount=0,sessionEnded=false,autoGrade12Enabled=true;
+let wrongPicks=new Set(),solved=false,solvingStart=0,scoreInterval=null,questionPoints=0,totalPoints=0,questionAttempts=0,questionCorrect=false;
+let autoNextTimer=null,autoNextInterval=null;
+function cancelAutoNext(){if(autoNextTimer!==null){clearTimeout(autoNextTimer);autoNextTimer=null;}if(autoNextInterval!==null){clearInterval(autoNextInterval);autoNextInterval=null;}}
+function scheduleAutoNext(){
+ cancelAutoNext();
+ const start=Date.now(),duration=3000;
+ const update=()=>{const remaining=Math.max(0,Math.ceil((duration-(Date.now()-start))/1000));
+  if(solved&&questionCorrect)$('questionHint').textContent=`정답입니다! ${remaining}초 뒤 다음 문제로 자동 이동합니다. ‘다음 문제’를 누르면 바로 넘어갑니다.`;
+ };
+ update();autoNextInterval=setInterval(update,150);
+ autoNextTimer=setTimeout(()=>{cancelAutoNext();if(solved&&questionCorrect&&!sessionEnded)next();},duration);
+}
+const scoreFromTime=(ms,wrong)=>Math.max(0,1000-Math.floor(Math.max(0,ms)/100)*10-wrong*100);
+function stopScoreClock(){if(scoreInterval!==null){clearInterval(scoreInterval);scoreInterval=null;}}
+function updateScoreboard(){const elapsed=solvingStart?Math.max(0,Date.now()-solvingStart):0;const pts=solved?questionPoints:scoreFromTime(elapsed,wrongPicks.size);$('solveClock').textContent=!solvingStart?'관찰 중':(elapsed/1000).toFixed(1)+'초';$('livePoints').textContent=pts.toLocaleString('ko-KR')+'점';$('totalPoints').textContent=totalPoints.toLocaleString('ko-KR')+'점';$('chanceLabel').textContent=solved?'문제 종료':'남은 기회 '+(2-wrongPicks.size)+'번';$('timeFill').style.width=(solved?0:Math.max(0,100-elapsed/100))+'%';}
+function beginScoreClock(){solvingStart=Date.now();stopScoreClock();updateScoreboard();scoreInterval=setInterval(updateScoreboard,80);}
+
+if(!IS_STUDENT){try{const saved=JSON.parse(localStorage.getItem(STORE_KEY)||'null');if(Array.isArray(saved)&&saved.length){
+  questions=validateQuestionArray(saved);
+  // 이전 버전 저장 목록에 충청도 문항이 하나도 없으면 기본 예시만 보충합니다.
+  // 기존에 교사가 등록한 다른 지역 문항은 그대로 보존합니다.
+  if(!questions.some(q=>q.region==='충청도')){
+   const newExamples=INITIAL_QUESTIONS.filter(q=>q.region==='충청도'&&!questions.some(x=>x.id===q.id||x.prompt===q.prompt));
+   questions.push(...copy(newExamples));
+   if(newExamples.length)localStorage.setItem(STORE_KEY,JSON.stringify(questions));
+  }
+ }}catch(err){console.warn('저장 자료를 불러오지 못했습니다.',err);}}
+function validateQuestionArray(arr){if(!Array.isArray(arr)||arr.length>5000)throw Error('문항 목록이 올바르지 않습니다.');return arr.map((q,i)=>{if(!q||typeof q.prompt!=='string'||!q.prompt.trim()||!Array.isArray(q.choices)||q.choices.length!==4||q.choices.some(v=>typeof v!=='string'||!v.trim())||![0,1,2,3].includes(Number(q.answer)))throw Error(`${i+1}번째 문제 형식을 확인하세요.`);return {id:String(q.id||'q'+i),region:String(q.region||'기타'),kind:String(q.kind||'뜻 맞히기'),prompt:q.prompt,choices:q.choices.slice(),answer:Number(q.answer),explanation:String(q.explanation||'')};});}
+function persist(){if(IS_STUDENT)return;try{localStorage.setItem(STORE_KEY,JSON.stringify(questions));}catch(err){$('editorStatus').textContent='브라우저 저장 공간이 부족합니다. JSON 백업을 저장하세요.';}}
+function stopPreview(){if(previewInterval!==null){clearInterval(previewInterval);previewInterval=null;}if(previewTimeout!==null){clearTimeout(previewTimeout);previewTimeout=null;}previewActive=false;}
+function show(id){if(id!=='game'){stopPreview();stopScoreClock();}for(const x of ['welcome','game','teacher','roundEnd'])$(x).classList.toggle('hidden',x!==id);window.scrollTo({top:0,behavior:'instant'});}
+function shuffle(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const ROUND_SIZE=15;
+const DICTIONARY_URL='https://ceraserx-9rassam.github.io/malbadang/dictionary/dictionary_S_index.html';
+function chooseFourWrong(standard,allStandards){
+ const list=shuffle([...new Set(allStandards.filter(x=>x&&x!==standard))]);
+ // 최소한 4개 선택지가 없으면 추정 보기로 채우지 않고 문항 생성하지 않습니다.
+ return list.slice(0,3);
+}
+function buildGrade12Questions(entries){
+ const records=entries.filter(e=>e&&e.source==='grade12project'&&String(e.jeju||'').trim()&&String(e.standard||'').trim());
+ const allStd=records.map(e=>String(e.standard).trim());
+ const results=[];
+ for(const e of records){
+  const word=String(e.jeju).trim(),standard=String(e.standard).trim();
+  const wrong=chooseFourWrong(standard,allStd);
+  if(wrong.length<3)continue;
+  const correctIndex=results.length%4,choices=wrong.slice();choices.splice(correctIndex,0,standard);
+  results.push({id:'autosync_'+String(e.id||word+'_'+standard),region:'제주어',kind:'1·2학년 말바당 프로젝트',prompt:`제주어 ‘${word}’의 뜻은 무엇일까요?`,choices,answer:correctIndex,explanation:`통합사전 1·2학년 말바당 프로젝트: ‘${word}’ — ‘${standard}’.`});
+ }
+ return results;
+}
+async function loadPublishedGrade12(){
+ if(!autoGrade12Enabled)return [];
+ try{
+  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),6500);
+  let response;
+  try{response=await fetch(DICTIONARY_URL,{cache:'no-store',signal:controller.signal});}
+  finally{clearTimeout(timeout);}
+  if(!response.ok)throw Error('HTTP '+response.status);
+  const html=await response.text();
+  const match=html.match(/<script\s+id=["']seed["']\s+type=["']application\/json["']\s*>([\s\S]*?)<\/script>/i);
+  if(!match)throw Error('공개 사전의 데이터 형식을 찾지 못했습니다.');
+  const data=JSON.parse(match[1]);
+  if(!Array.isArray(data.entries))throw Error('등록 자료가 없습니다.');
+  return buildGrade12Questions(data.entries);
+ }catch(err){console.warn('말바당 1·2학년 자동 연동 건너뜀:',err);return [];}
+}
+async function start(which){
+ if(sessionEnded===false&&pool.length&&document.getElementById('game')&&!$('game').classList.contains('hidden')){stopPreview();stopScoreClock();}
+ mode=which;autoGrade12Enabled=$('autoGrade12')?.checked??autoGrade12Enabled;
+ const startButtons=document.querySelectorAll('.modebtn');startButtons.forEach(b=>b.disabled=true);
+ try{
+  // 중복 자료는 기존 수업 문제를 우선하며 동일 문장으로 반복 출제하지 않습니다.
+  const fresh=await loadPublishedGrade12();
+  const all=[...questions];const known=new Set(all.map(q=>q.prompt.trim()));let added=0;
+  for(const q of fresh){if(!known.has(q.prompt.trim())){all.push(q);known.add(q.prompt.trim());added++;}}
+  if($('syncStatus'))$('syncStatus').textContent=autoGrade12Enabled?`공개 통합사전에서 새로운 문제 ${added}개를 이번 게임에 반영했습니다. (기존 중복 제외)`:'자동 반영을 사용하지 않습니다.';
+  const selected=all.filter(q=>which==='all'||q.region===which);
+  if(!selected.length){alert('선택한 지역에 출제할 문제가 없습니다. 교사용 문제 관리에서 해당 지역의 문제를 추가해 주세요.');return;}
+  remainingQueue=shuffle(selected);sessionQuestionPool=selected;pool=[];index=0;roundDone=0;roundCount=0;attempts=0;corrects=0;totalPoints=0;opened=-1;showAnswer=false;sessionEnded=false;
+  nextRound();
+ }finally{startButtons.forEach(b=>b.disabled=false);}
+}
+function nextRound(){
+ const limit=Math.min(ROUND_SIZE,sessionQuestionPool.length);
+ if(limit===0){show('welcome');return;}
+ if(remainingQueue.length<limit){
+  // 전체 문항을 순환하더라도 한 번의 15문제 안에서 동일 문항은 중복하지 않습니다.
+  const waitingIds=new Set(remainingQueue.map(q=>q.id));
+  const refill=shuffle(sessionQuestionPool.filter(q=>!waitingIds.has(q.id)));
+  remainingQueue.push(...refill);
+ }
+ pool=remainingQueue.splice(0,limit);
+ index=0;roundDone=0;roundCount++;show('game');renderQuestion();
+}
+function endRound(early=false){
+ cancelAutoNext();stopPreview();stopScoreClock();sessionEnded=true;
+ $('endTitle').textContent='더 도전하시겠습니까?';
+ $('endMsg').textContent=early?`이번 도전을 종료했습니다. ${roundDone}문제를 풀었습니다. 더 도전하거나 메뉴로 돌아갈 수 있어요.`:`${roundCount}번째 도전 완료! ${pool.length}문제를 모두 살펴봤어요.`;
+ $('endPoints').textContent=totalPoints.toLocaleString('ko-KR')+'점';
+ $('endCorrect').textContent=`정답 ${corrects}문제`;
+ $('endDone').textContent=`이번 도전 ${roundDone} / ${pool.length}문제`;
+ show('roundEnd');
+}
+function renderQuestion(){cancelAutoNext();stopPreview();stopScoreClock();wrongPicks=new Set();solved=false;solvingStart=0;questionPoints=0;questionAttempts=0;questionCorrect=false;const q=pool[index];$('previewTimer').classList.add('hidden');opened=-1;showAnswer=false;$('questionNumber').textContent=(index+1)+'번 문제';$('qRegion').textContent=q.region;$('qKind').textContent=q.kind;$('progress').textContent=(index+1)+' / '+pool.length;$('prompt').textContent=q.prompt;$('stageTitle').textContent='👀 자세히 살펴보세요!';$('questionHint').textContent='네 접시를 살펴보고 정답의 위치를 기억하세요. 5초 뒤 뚜껑이 닫힙니다.';$('feedback').className='feedback hidden';$('feedback').textContent='';$('revealBtn').classList.add('hidden');$('score').textContent=`정답 ${corrects} / 선택 ${attempts}`;updateScoreboard();$('nextBtn').textContent=index===pool.length-1?'이번 도전 마치기 🏁':'다음 문제 ➜';$('lids').replaceChildren();q.choices.forEach((choice,i)=>{const btn=document.createElement('button');btn.type='button';btn.className='lid cloaked';btn.setAttribute('aria-label',`${i+1}번 뚜껑 열기`);btn.dataset.option=String(i);btn.innerHTML=`<div class="cloche" aria-hidden="true"><div class="plate"></div><div class="dome"></div><div class="knob"></div><div class="lidnum">${i+1}</div></div><div class="lidcaption">${i+1}번 뚜껑</div>`;btn.addEventListener('click',()=>pick(i));$('lids').append(btn);});beginPreview();}
+function beginPreview(){
+ previewActive=true;const q=pool[index];const timer=$('previewTimer');timer.classList.remove('hidden');
+ const buttons=Array.from($('lids').children);
+ buttons.forEach((btn,i)=>{btn.disabled=true;btn.className='lid preview-open';btn.replaceChildren();const content=document.createElement('div');content.className='answerText';content.textContent=q.choices[i];const number=document.createElement('div');number.className='previewNumber';number.textContent=`${i+1}번 접시`;btn.append(number,content);});
+ const deadline=Date.now()+5000;const update=()=>{$('previewCount').textContent=String(Math.max(1,Math.ceil((deadline-Date.now())/1000)));};
+ update();previewInterval=setInterval(update,100);previewTimeout=setTimeout(()=>{
+  stopPreview();timer.classList.add('hidden');$('stageTitle').textContent='🍽️ 뚜껑이 닫혔어요!';$('questionHint').textContent='기억한 정답의 위치를 선택해 뚜껑을 열어보세요!';
+  buttons.forEach((btn,i)=>{btn.disabled=false;btn.className='lid cloaked';btn.replaceChildren();btn.innerHTML=`<div class="cloche" aria-hidden="true"><div class="plate"></div><div class="dome"></div><div class="knob"></div><div class="lidnum">${i+1}</div></div><div class="lidcaption">${i+1}번 뚜껑</div>`;});
+  beginScoreClock();
+ },5000);
+}
+function paintLids(){
+ const q=pool[index];Array.from($('lids').children).forEach((btn,i)=>{
+  const attempted=wrongPicks.has(i)||(solved&&i===q.answer);
+  const reveal=attempted||(showAnswer&&i===q.answer);
+  btn.className='lid '+(reveal?'opened':'cloaked');
+  if(reveal){btn.replaceChildren();const answer=document.createElement('div');answer.className='answerText';answer.textContent=q.choices[i];btn.append(answer);const mark=document.createElement('div');mark.className='resultMark';if(i===q.answer){btn.classList.add(showAnswer&&!questionCorrect?'revealed-correct':'correct');mark.textContent='⭕ 정답!';}else{btn.classList.add('wrong');mark.textContent='✕ 오답';}btn.append(mark);}
+  else btn.innerHTML=`<div class="cloche" aria-hidden="true"><div class="plate"></div><div class="dome"></div><div class="knob"></div><div class="lidnum">${i+1}</div></div><div class="lidcaption">${i+1}번 뚜껑</div>`;
+  btn.disabled=previewActive||solved||wrongPicks.has(i);
+ });
+}
+function pick(i){
+ if(previewActive||solved||wrongPicks.has(i)||!solvingStart)return;
+ const q=pool[index];attempts++;questionAttempts++;opened=i;
+ const good=i===q.answer;
+ const result=$('feedback');result.classList.remove('hidden');
+ if(good){
+  solved=true;questionCorrect=true;corrects++;stopScoreClock();questionPoints=scoreFromTime(Date.now()-solvingStart,wrongPicks.size);totalPoints+=questionPoints;
+  result.className='feedback good';result.textContent=`🎉 정답이에요! +${questionPoints.toLocaleString('ko-KR')}점 (오답 ${wrongPicks.size}회, 회당 100점 감점). `+(q.explanation||'');
+  $('stageTitle').textContent='딩동댕! 정답!';$('questionHint').textContent='3초 뒤 다음 문제로 넘어갑니다.';$('revealBtn').classList.add('hidden');
+ }else{
+  wrongPicks.add(i);
+  if(wrongPicks.size>=2){
+   solved=true;questionPoints=0;stopScoreClock();showAnswer=true;
+   result.className='feedback bad';result.textContent='두 번의 기회를 모두 사용했어요. 이번 문제는 0점이에요. '+(q.explanation||'');
+   $('stageTitle').textContent='정답을 확인해 보세요!';$('questionHint').textContent='정답을 확인하고 다음 문제로 도전해 보세요.';$('revealBtn').classList.add('hidden');
+  }else{
+   result.className='feedback bad';result.textContent='아쉬워요! 오답으로 100점 감점됐어요. 다른 뚜껑을 한 번 더 골라 보세요!';
+   $('stageTitle').textContent='한 번 더 도전!';$('questionHint').textContent='틀린 뚜껑은 열린 채로 남아요. 나머지 뚜껑에서 선택해 보세요.';$('revealBtn').classList.add('hidden');
+  }
+ }
+ paintLids();updateScoreboard();$('score').textContent=`정답 ${corrects} / 선택 ${attempts}`;
+ if(good)scheduleAutoNext();
+}
+function next(){cancelAutoNext();stopPreview();stopScoreClock();roundDone++;if(index>=pool.length-1){endRound(false);return;}index++;renderQuestion();}
+function retry(){cancelAutoNext();stopPreview();stopScoreClock();attempts=Math.max(0,attempts-questionAttempts);if(questionCorrect){corrects=Math.max(0,corrects-1);totalPoints=Math.max(0,totalPoints-questionPoints);}renderQuestion();}
+$('revealBtn').onclick=()=>{if(!solved)return;showAnswer=true;paintLids();$('revealBtn').classList.add('hidden');};$('nextBtn').onclick=next;$('retryBtn').onclick=retry;$('endBtn').onclick=()=>endRound(true);$('challengeAgain').onclick=()=>{if(!sessionEnded)return;sessionEnded=false;nextRound();};$('backToMenu').onclick=()=>{cancelAutoNext();remainingQueue=[];pool=[];sessionEnded=true;show('welcome');};
+$('homeBtn').onclick=()=>{if(!$('game').classList.contains('hidden'))endRound(true);else show('welcome');};$('teacherBtn').onclick=()=>{if(IS_STUDENT)return;renderTeacher();show('teacher');};$('fullBtn').onclick=()=>{if(!document.fullscreenElement){document.documentElement.requestFullscreen?.().catch(()=>{});}else document.exitFullscreen?.().catch(()=>{});};document.querySelectorAll('.modebtn').forEach(el=>el.onclick=()=>start(el.dataset.mode));
+function clearEditor() {editingId=null;$('editorTitle').textContent='새 문제 등록';$('editRegion').value='제주어';$('editKind').value='뜻 맞히기';$('editPrompt').value='';for(let i=0;i<4;i++)$('editChoice'+i).value='';$('editAnswer').value='0';$('editExplanation').value='';$('editorStatus').textContent='';}
+function renderTeacher(){if(IS_STUDENT)return;$('countQuestions').textContent=questions.length+'개';const list=$('questionList');list.replaceChildren();questions.forEach((q,i)=>{const row=document.createElement('div');row.className='qitem';const strong=document.createElement('strong');strong.textContent=`${i+1}. ${q.prompt}`;row.append(strong);const small=document.createElement('small');small.textContent=`${q.region} · ${q.kind} · 정답 ${q.answer+1}번 (${q.choices[q.answer]})`;row.append(small);const buttons=document.createElement('div');buttons.className='row';const edit=document.createElement('button');edit.className='btn small alt';edit.textContent='수정';edit.onclick=()=>{editingId=q.id;$('editorTitle').textContent='문제 수정';$('editRegion').value=q.region;$('editKind').value=q.kind;$('editPrompt').value=q.prompt;for(let j=0;j<4;j++)$('editChoice'+j).value=q.choices[j];$('editAnswer').value=String(q.answer);$('editExplanation').value=q.explanation;window.scrollTo({top:0,behavior:'smooth'});};const del=document.createElement('button');del.className='btn small outline';del.textContent='삭제';del.onclick=()=>{if(!confirm('이 문제를 삭제할까요?'))return;questions.splice(i,1);persist();renderTeacher();};buttons.append(edit,del);row.append(buttons);list.append(row);});}
+$('saveQuestion').onclick=()=>{const q={id:editingId||'id'+Date.now()+'_'+Math.floor(Math.random()*100000),region:$('editRegion').value,kind:$('editKind').value,prompt:$('editPrompt').value.trim(),choices:Array.from({length:4},(_,i)=>$('editChoice'+i).value.trim()),answer:Number($('editAnswer').value),explanation:$('editExplanation').value.trim()};try{validateQuestionArray([q]);}catch(err){$('editorStatus').textContent=err.message;return;}if(editingId){const idx=questions.findIndex(x=>x.id===editingId);if(idx>=0)questions[idx]=q;else questions.push(q);}else questions.push(q);persist();clearEditor();renderTeacher();$('editorStatus').textContent='문제가 저장됐습니다. JSON 백업도 보관해 주세요.';};$('clearEditor').onclick=clearEditor;
+function download(name,data,type='application/json;charset=utf-8'){const blob=new Blob([data],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+$('downloadJson').onclick=()=>download('말바당_뚜껑열어_문제백업.json',JSON.stringify({format:'malbadang-lidgame-v1',questions},null,2));$('importJson').onclick=()=>$('uploadJson').click();$('uploadJson').onchange=async e=>{const f=e.target.files?.[0];if(!f)return;try{const x=JSON.parse(await f.text());const incoming=validateQuestionArray(Array.isArray(x)?x:x.questions);if(!confirm(`${incoming.length}개 문제로 현재 목록을 교체할까요?`))return;questions=incoming;persist();clearEditor();renderTeacher();$('editorStatus').textContent='JSON 문제를 불러왔습니다.';}catch(err){alert('JSON 불러오기 실패: '+err.message);}finally{e.target.value='';}};
+$('addGrade12').onclick=()=>{const fresh=INITIAL_QUESTIONS.filter(q=>q.id.startsWith('grade12project_')&&!questions.some(existing=>existing.id===q.id||existing.prompt===q.prompt));if(!fresh.length){$('editorStatus').textContent='1·2학년 프로젝트 문제가 이미 모두 등록되어 있습니다.';return;}questions.push(...copy(fresh));persist();renderTeacher();$('editorStatus').textContent=`1·2학년 프로젝트 문제 ${fresh.length}개를 기존 문제를 지우지 않고 추가했습니다.`;};
+$('restoreDefault').onclick=()=>{if(!confirm('현재 문제를 초기 예시 문제로 교체할까요? 먼저 JSON 백업을 권장합니다.'))return;questions=copy(INITIAL_QUESTIONS);persist();clearEditor();renderTeacher();};
+function createStudentHTML(){
+ let source='<!doctype html>\n'+document.documentElement.outerHTML;
+ source=source.replace(/const IS_STUDENT=false;/,'const IS_STUDENT=true;');
+ source=source.replace('let sessionQuestionPool=[],remainingQueue=[],roundDone=0,roundCount=0,sessionEnded=false,autoGrade12Enabled=true;', 'let sessionQuestionPool=[],remainingQueue=[],roundDone=0,roundCount=0,sessionEnded=false,autoGrade12Enabled='+String($('autoGrade12').checked)+';');
+ source=source.replace(/const INITIAL_QUESTIONS=[\s\S]*?;\nconst STORE_KEY=/,()=> 'const INITIAL_QUESTIONS='+JSON.stringify(questions).replace(/</g,'\\u003c')+';\nconst STORE_KEY=');
+ source=source.replace(/<section id="welcome" class="hero(?: hidden)?"/, '<section id="welcome" class="hero"');
+ source=source.replace(/<section id="game" class="board(?: hidden)?"/, '<section id="game" class="board hidden"');
+ source=source.replace(/<section id="teacher" class="teacher(?: hidden)?"/, '<section id="teacher" class="teacher hidden"');
+ source=source.replace(/<section id="roundEnd" class="roundsummary(?: hidden)?"/, '<section id="roundEnd" class="roundsummary hidden"');
+ source=source.replace('</head>','<style>#teacherBtn,#teacher{display:none!important}</style></head>');
+ // 공개 학생용에는 GitHub 관리자 게시 영역과 토큰 입력 UI를 완전히 제거합니다.
+ const publishStart=source.indexOf('<div id="githubPublishPanel"');
+ if(publishStart>=0){const publishEnd=source.indexOf('<div class="roundnotice"><label',publishStart);if(publishEnd<0)throw Error('게시 관리자 영역을 안전하게 제거하지 못했습니다.');source=source.slice(0,publishStart)+source.slice(publishEnd);}
+ source=source.replace(/<button id="publishGithub"[^>]*>[\s\S]*?<\/button>/,'');
+ const ghStart=source.lastIndexOf('\nconst LID_GITHUB_OWNER=');const ghEnd=source.lastIndexOf('\nif(IS_STUDENT)');if(ghStart>=0&&ghEnd>ghStart)source=source.slice(0,ghStart)+source.slice(ghEnd);
+ if(source.split('<script>')[0].includes('id="githubToken"')||source.split('<script>')[0].includes('id="publishGithub"'))throw Error('학생용 파일에서 게시 관리자 입력창을 제거하지 못했습니다.');
+ return source;
+}
+$('exportStudent').onclick=()=>download('말바당_뚜껑열어_학생용.html',createStudentHTML(),'text/html;charset=utf-8');
+if(IS_STUDENT){$('teacherBtn').remove();$('autoGrade12').checked=autoGrade12Enabled;}
+</script></body></html>
